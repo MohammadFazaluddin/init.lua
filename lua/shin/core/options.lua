@@ -1,5 +1,4 @@
-
-vim.opt.guicursor = "n-v-i-c:block-Cursor" 
+vim.opt.guicursor = "n-v-i-c:block-Cursor"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -30,4 +29,11 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 
-vim.cmd("colorscheme habamax")
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+    desc = 'Highlight when yanking (copying) text',
+    group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
